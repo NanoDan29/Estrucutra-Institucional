@@ -51,7 +51,7 @@ public class Proyecto extends javax.swing.JFrame {
     DefaultTableModel modeloSueldos;
     DefaultTableModel modeloContratos;
     DefaultTableModel modeloFunciones;
-    
+
     private String username, password, port, host, ip;
     crud cn;
     Menu mn;
@@ -108,21 +108,20 @@ public class Proyecto extends javax.swing.JFrame {
         nominas();
         getNSueldos();
         getPersonas();
-        
+
     }
-    
-     private void estructura() {
+
+    private void estructura() {
         EST_INSTITUCIONAL es = new EST_INSTITUCIONAL(this.username,
                 this.password, this.port, this.host, this.ip);
         es.setVisible(true);
 
 //         System.out.println(this.username+this.password+this.port+ this.host+ this.ip);
     }
-    
-    
-    private void combos_funciones() throws SQLException{
-        
-      /* Combo cargos */
+
+    private void combos_funciones() throws SQLException {
+
+        /* Combo cargos */
         String datac[][] = dt.getData("cat_cargos", 2, "idcargo");
         JComboBox comboCargos = new JComboBox();
 
@@ -238,35 +237,6 @@ public class Proyecto extends javax.swing.JFrame {
             // cbn_IDP1.addItem(matriz[i]);
         }
     }
-//
-//    public void getPersonas() {
-//        String matriz[] = cr.SelectNombres();
-//        for (int i = 0; i < matriz.length; i++) {
-//            cbn_IDP.addItem(matriz[i]);
-//            cbn_IDP1.addItem(matriz[i]);
-//        }
-//    }
-//
-//    public void getInstituciones() {
-//        String matriz[] = cr.SelectNombresInsituciones();
-//        for (int i = 0; i < matriz.length; i++) {
-//            cbn_instituciones.addItem(matriz[i]);
-//        }
-//    }
-//
-//    public void getCargos() {
-//        String matriz[] = cr.SelectNombresCargos();
-//        for (int i = 0; i < matriz.length; i++) {
-//            cbn_cargos.addItem(matriz[i]);
-//        }
-//    }
-//
-//    public void getFunciones() {
-//        String matriz[] = cr.SelectNombresFunciones();
-//        for (int i = 0; i < matriz.length; i++) {
-//            cbn_funcion.addItem(matriz[i]);
-//        }
-//    }
 
     private void btn_add_emp() {
         String cedula = txt_cedula.getText();
@@ -361,22 +331,11 @@ public class Proyecto extends javax.swing.JFrame {
         txt_direccion = new javax.swing.JTextField();
         jSeparator13 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        jPanel7 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tbl_funciones = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tbl_cargos = new javax.swing.JTable();
-        jPanel11 = new javax.swing.JPanel();
-        txt_id_cargos = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txt_nombre_cargos = new javax.swing.JTextField();
-        jSeparator8 = new javax.swing.JSeparator();
-        txt_se = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jSeparator7 = new javax.swing.JSeparator();
-        jSeparator11 = new javax.swing.JSeparator();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbl_funciones = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -500,7 +459,7 @@ public class Proyecto extends javax.swing.JFrame {
                 .addComponent(btn_exit2)
                 .addGap(18, 18, 18)
                 .addComponent(btn_division, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,7 +514,9 @@ public class Proyecto extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -648,8 +609,7 @@ public class Proyecto extends javax.swing.JFrame {
                             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_id2)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_cedula)
                             .addComponent(txt_nombre)
                             .addComponent(txt_apellidoP)
@@ -659,8 +619,9 @@ public class Proyecto extends javax.swing.JFrame {
                             .addComponent(ch_genero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ch_estadoCivil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_tipoSangre)
-                            .addComponent(calendarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(231, Short.MAX_VALUE))
+                            .addComponent(calendarios, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                            .addComponent(txt_id2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -861,7 +822,7 @@ public class Proyecto extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_direccion)
-                            .addComponent(cbnCantonDR, javax.swing.GroupLayout.Alignment.TRAILING, 0, 289, Short.MAX_VALUE)
+                            .addComponent(cbnCantonDR, javax.swing.GroupLayout.Alignment.TRAILING, 0, 311, Short.MAX_VALUE)
                             .addComponent(cbnCiudadDR, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbProvinciasDR, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_Residencia))))
@@ -901,9 +862,9 @@ public class Proyecto extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(2, 2, 2)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator12, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -913,16 +874,13 @@ public class Proyecto extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout empleadosLayout = new javax.swing.GroupLayout(empleados);
@@ -953,33 +911,6 @@ public class Proyecto extends javax.swing.JFrame {
 
         panelPestañas.addTab("Empleados", Scroll_empleados);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
-
-        tbl_funciones.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        tbl_funciones.setForeground(new java.awt.Color(102, 102, 102));
-        tbl_funciones.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane4.setViewportView(tbl_funciones);
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        );
-
-        panelPestañas.addTab("Funciones", jPanel7);
-
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
         jScrollPane6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1000,9 +931,17 @@ public class Proyecto extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "Title 1", "Title 2"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_cargos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_cargosMouseClicked(evt);
@@ -1015,76 +954,23 @@ public class Proyecto extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(tbl_cargos);
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        txt_id_cargos.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
-
-        jLabel3.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/iconos/etiqueta.png"))); // NOI18N
-        jLabel3.setText("ID");
-
-        jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/iconos/usuario1.png"))); // NOI18N
-        jLabel7.setText("Nombre");
-
-        txt_nombre_cargos.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
-
-        txt_se.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
-        txt_se.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_seKeyReleased(evt);
+        jScrollPane4.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                jScrollPane4ComponentHidden(evt);
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/iconos/lupa.png"))); // NOI18N
-        jLabel9.setText("Busqueda");
+        tbl_funciones.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        tbl_funciones.setForeground(new java.awt.Color(102, 102, 102));
+        tbl_funciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator11)
-                    .addComponent(jSeparator7)
-                    .addComponent(jSeparator8)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_id_cargos, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_nombre_cargos, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_se, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_id_cargos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(20, 20, 20)
-                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txt_nombre_cargos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_se, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(26, 26, 26)
-                .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(tbl_funciones);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1092,13 +978,16 @@ public class Proyecto extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                .addGap(0, 568, Short.MAX_VALUE))
         );
 
         panelPestañas.addTab("Cargos", jPanel9);
@@ -1128,7 +1017,7 @@ public class Proyecto extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -1216,7 +1105,7 @@ public class Proyecto extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_filtro_nomina)
-                            .addComponent(cbn_IDP, 0, 253, Short.MAX_VALUE)
+                            .addComponent(cbn_IDP, 0, 274, Short.MAX_VALUE)
                             .addComponent(cbn_IDS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jSeparator17))
                 .addContainerGap())
@@ -1472,10 +1361,12 @@ public class Proyecto extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2)
-                            .addComponent(panelPestañas))))
+                        .addComponent(jSeparator2)))
                 .addGap(13, 13, 13))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelPestañas, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1484,9 +1375,9 @@ public class Proyecto extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelPestañas, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -1544,12 +1435,12 @@ public class Proyecto extends javax.swing.JFrame {
                     btn_add_emp();
                     break;
                 case 1:
-                     funciones_add();
+                    funciones_add();
                     break;
                 case 2:
-                    String id = txt_id_cargos.getText().trim();
-                    String nombre = txt_nombre_cargos.getText().trim();
-                    btn_add("cat_cargos", 2, "idcargo", "IDC_", id, nombre, 1.0);
+//                    String id = txt_id_cargos.getText().trim();
+//                    String nombre = txt_nombre_cargos.getText().trim();
+//                    btn_add("cat_cargos", 2, "idcargo", "IDC_", id, nombre, 1.0);
                     break;
                 case 3:
                     contratos_add();
@@ -1567,10 +1458,8 @@ public class Proyecto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_addActionPerformed
 
-    
-    
-    private void funciones_add(){
-          try {
+    private void funciones_add() {
+        try {
             Object[] test = new Object[1];
             test[0] = null;
 
@@ -1578,36 +1467,33 @@ public class Proyecto extends javax.swing.JFrame {
             tbl_funciones.setModel(modeloFunciones);
 //            
             String id = (String) tbl_funciones.getValueAt(tbl_funciones.getRowCount() - 2, 0);
-            
-            
+
             String Idrecort = id.substring(id.indexOf("_") + 1);
             int idInsert = Integer.parseInt(Idrecort) + 1;
             DecimalFormat format = new DecimalFormat("000");
             String idI = "IDF_" + format.format(idInsert);
-          
+
             tbl_funciones.setValueAt(idI, tbl_funciones.getRowCount() - 1, 0);
-          
+
 
             /*informacion defecto de sueldo*/
-            
             String data[][] = dt.getData("cat_cargos", 2, "idcargo");
             tbl_funciones.setValueAt(data[0][0], tbl_funciones.getRowCount() - 1, 1);
 
             tbl_funciones.setValueAt("Sin registro", tbl_funciones.getRowCount() - 1, 2);
-            
+
             /*carga de la informacion en la base de datos*/
             JOptionPane.showMessageDialog(null, "Se ha cargado una nueva funcion"
                     + "\ncon informacion por defecto,\nPor favor editalas",
                     "Alert!", JOptionPane.INFORMATION_MESSAGE);
 
-              
-              cr.InsertFuciones(idI, data[0][0], "Sin registro");
+            cr.InsertFuciones(idI, data[0][0], "Sin registro");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error!\t" + e.getMessage(),
                     "Error!", JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }
     private void btn_delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delActionPerformed
 
@@ -1625,8 +1511,8 @@ public class Proyecto extends javax.swing.JFrame {
                     funciones_delete();
                     break;
                 case 2:
-                    String id = txt_id_cargos.getText().trim();
-                    btn_delete("cat_cargos", id, "idcargo");
+//                    String id = txt_id_cargos.getText().trim();
+//                    btn_delete("cat_cargos", id, "idcargo");
                     break;
                 case 3:
                     int op = JOptionPane.showConfirmDialog(null, "estas seguro de eliminar el item?",
@@ -1647,25 +1533,23 @@ public class Proyecto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_delActionPerformed
 
-    
-    private void funciones_delete(){
-    
-         try{
-             
-             int confirm = JOptionPane.showConfirmDialog(null, "estas seguro de borrar el item?","alerta",JOptionPane.INFORMATION_MESSAGE);
-             
-             if( confirm == 0 ){
+    private void funciones_delete() {
+
+        try {
+
+            int confirm = JOptionPane.showConfirmDialog(null, "estas seguro de borrar el item?", "alerta", JOptionPane.INFORMATION_MESSAGE);
+
+            if (confirm == 0) {
                 int fila = tbl_funciones.getSelectedRow();
                 String Id_funcion = String.valueOf(tbl_funciones.getValueAt(fila, 0));
-                
+
                 cr.DeleteFunciones(Id_funcion);
                 funciones();
-             }
-             
-             
-         }catch(Exception e){
-         
-         }
+            }
+
+        } catch (Exception e) {
+
+        }
     }
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
 
@@ -1674,15 +1558,18 @@ public class Proyecto extends javax.swing.JFrame {
             pestañas = panelPestañas.getSelectedIndex();
 
             switch (pestañas) {
+                case 0:
+                    btn_add_emp();
+                    break;
                 case 1:
                     funciones_edit();
                     break;
                 case 2:
-                    String id = txt_id_cargos.getText().trim();
-                    String nombre = txt_nombre_cargos.getText().trim();
-                    btn_edit("cat_cargos", id, nombre, "idcargo", 1.0);
+//                    String id = txt_id_cargos.getText().trim();
+//                    String nombre = txt_nombre_cargos.getText().trim();
+//                    btn_edit("cat_cargos", id, nombre, "idcargo", 1.0);
                     break;
-                
+
                 case 3:
                     contratos_edit_delete("update");
                     break;
@@ -1714,7 +1601,17 @@ public class Proyecto extends javax.swing.JFrame {
     private void contrato() {
         try {
 
-            modeloContratos = new DefaultTableModel();
+            modeloContratos = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    if (columna == 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+
+                }
+            };
             String data[][] = dt.getData("cat_contrato", 12, "idcontrato");
 
             ArrayList<String> lista = new ArrayList<String>();
@@ -1760,7 +1657,17 @@ public class Proyecto extends javax.swing.JFrame {
     private void empleados() {
         try {
 
-            modeloDatos = new DefaultTableModel();
+            modeloDatos = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    if (columna == 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+
+                }
+            };
             String data[][] = dt.getData("cat_empleados", 14, "idpersona");
 
             ArrayList<String> lista = new ArrayList<String>();
@@ -1807,7 +1714,17 @@ public class Proyecto extends javax.swing.JFrame {
     private void cargos() {
         try {
 
-            modeloCargos = new DefaultTableModel();
+            modeloCargos = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    if (columna == 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+
+                }
+            };
             String data[][] = dt.getData("cat_cargos", 2, "idcargo");
 
             ArrayList<String> lista = new ArrayList<String>();
@@ -1817,7 +1734,7 @@ public class Proyecto extends javax.swing.JFrame {
             for (int i = 0; i < lista.size(); i++) {
                 modeloCargos.addColumn(lista.get(i));
             }
-
+//
             Object[] test = new Object[1];
             test[0] = null;
             int fila = dt.getFilas("cat_cargos");
@@ -1842,7 +1759,17 @@ public class Proyecto extends javax.swing.JFrame {
     private void funciones() {
         try {
 
-            modeloFunciones = new DefaultTableModel();
+            modeloFunciones = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    if (columna == 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+
+                }
+            };;
             String data[][] = dt.getData("funciones", 3, "idfuncion");
 
             ArrayList<String> lista = new ArrayList<String>();
@@ -1867,7 +1794,7 @@ public class Proyecto extends javax.swing.JFrame {
                     modeloFunciones.setValueAt(data[i][j], i, j);
                 }
             }
-            
+
             tbl_funciones.setModel(modeloFunciones);
             combos_funciones();
 
@@ -1879,7 +1806,17 @@ public class Proyecto extends javax.swing.JFrame {
     private void sueldos() {
         try {
 
-            modeloSueldos = new DefaultTableModel();
+            modeloSueldos = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    if (columna == 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+
+                }
+            };
             String data[][] = dt.getData("cat_sueldos", 3, "idsueldo");
 
             ArrayList<String> lista = new ArrayList<String>();
@@ -2011,17 +1948,17 @@ public class Proyecto extends javax.swing.JFrame {
                 FechaFin, Estado, horas, opcion);
 
     }
-    
-    private void funciones_edit(){
-        
-         int fila = tbl_funciones.getSelectedRow();
+
+    private void funciones_edit() {
+
+        int fila = tbl_funciones.getSelectedRow();
 
         String Id_funcion = String.valueOf(tbl_funciones.getValueAt(fila, 0));
 
         String Id_contrato = (String) tbl_funciones.getValueAt(fila, 1);
 
         String Nombre = (String) tbl_funciones.getValueAt(fila, 2);
-        
+
         cr.editFunciones(Id_funcion, Id_contrato, Nombre);
 
     }
@@ -2069,7 +2006,6 @@ public class Proyecto extends javax.swing.JFrame {
         dp.setVisible(true);
     }
 
-   
 
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
         int val = JOptionPane.showConfirmDialog(null, "Estas Seguro de querer salir?",
@@ -2122,18 +2058,53 @@ public class Proyecto extends javax.swing.JFrame {
         getDataTabla(5, filas, columnas, tbl_sueldos, txt_id_sueldos, txt_descripcion_sueldos, sp_salario_sueldos);
     }//GEN-LAST:event_tbl_sueldosMouseClicked
 
-    private void txt_seKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_seKeyReleased
-        txt_se.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(final KeyEvent e) {
+    private void txt_filtro_nominaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filtro_nominaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_filtro_nominaKeyTyped
 
-                trs.setRowFilter(RowFilter.regexFilter("(?i)" + txt_se.getText(), 0, 1));
+    private void txt_filtro_nominaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filtro_nominaKeyReleased
+        txt_filtro_nomina.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+                trs.setRowFilter(RowFilter.regexFilter("(?i)" + txt_filtro_nomina.getText(), 0, 1, 2));
             }
         });
 
-        trs = new TableRowSorter(modeloCargos);
-        tbl_cargos.setRowSorter(trs);
-    }//GEN-LAST:event_txt_seKeyReleased
+        trs = new TableRowSorter(modeloNomina);
+        tbl_nominas.setRowSorter(trs);
+    }//GEN-LAST:event_txt_filtro_nominaKeyReleased
+
+    private void cbn_IDSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbn_IDSMouseClicked
+
+    }//GEN-LAST:event_cbn_IDSMouseClicked
+
+    private void tbl_nominasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_nominasMouseClicked
+        int filas = tbl_nominas.getRowCount();
+        int columnas = tbl_nominas.getColumnCount();
+
+        String vector[] = new String[columnas];
+        int pos = tbl_nominas.getSelectedRow();
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                if (i == pos) {
+                    vector[j] = tbl_nominas.getValueAt(i, j).toString();
+                }
+            }
+        }
+
+        cbn_IDS.setSelectedItem(vector[0]);
+        cbn_IDP.setSelectedItem(vector[1]);
+
+    }//GEN-LAST:event_tbl_nominasMouseClicked
+
+    private void tbl_contratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_contratosMouseClicked
+
+    }//GEN-LAST:event_tbl_contratosMouseClicked
+
+    private void jScrollPane4ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jScrollPane4ComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane4ComponentHidden
 
     private void jScrollPane6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jScrollPane6KeyReleased
 
@@ -2146,14 +2117,91 @@ public class Proyecto extends javax.swing.JFrame {
     private void tbl_cargosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbl_cargosKeyReleased
         int filas = tbl_cargos.getRowCount();
         int columnas = tbl_cargos.getColumnCount();
-        getDataTabla(2, filas, columnas, tbl_cargos, txt_id_cargos, txt_nombre_cargos, sp_salario_sueldos);
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+
+            }
+        }
+
+//        int filas = tbl_cargos.getRowCount();
+        //        int columnas = tbl_cargos.getColumnCount();
+        //        getDataTabla(2, filas, columnas, tbl_cargos, txt_id_cargos, txt_nombre_cargos, sp_salario_sueldos);
     }//GEN-LAST:event_tbl_cargosKeyReleased
 
     private void tbl_cargosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_cargosMouseClicked
-        int filas = tbl_cargos.getRowCount();
-        int columnas = tbl_cargos.getColumnCount();
-        getDataTabla(2, filas, columnas, tbl_cargos, txt_id_cargos, txt_nombre_cargos, sp_salario_sueldos);
+        //        int filas = tbl_cargos.getRowCount();
+        //        int columnas = tbl_cargos.getColumnCount();
+        //        getDataTabla(2, filas, columnas, tbl_cargos, txt_id_cargos, txt_nombre_cargos, sp_salario_sueldos);
     }//GEN-LAST:event_tbl_cargosMouseClicked
+
+    private void cbnCantonDRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnCantonDRMouseClicked
+        String nombre = cbnCantonDR.getSelectedItem().toString();
+        String id = cr.SelectIDNombreCanton(nombre);
+        txt_Residencia.setText(id);        // TODO add your handling code here:
+    }//GEN-LAST:event_cbnCantonDRMouseClicked
+
+    private void cbnCiudadDRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnCiudadDRMouseClicked
+
+        cbnCantonDR.removeAllItems();
+        String ciudad = cbnCiudadDR.getSelectedItem().toString();
+        String ciudadR = cr.SelectIDNombreCiudad(ciudad);
+        String cantonesR[] = cr.SelectCantonR(ciudadR);
+        for (int i = 0; i < cantonesR.length; i++) {
+            cbnCantonDR.addItem(cantonesR[i]);
+        }
+    }//GEN-LAST:event_cbnCiudadDRMouseClicked
+
+    private void cbProvinciasDRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbProvinciasDRMouseClicked
+        cbnCiudadDR.removeAllItems();
+
+        int a = cbProvinciasDR.getSelectedIndex() + 1;
+        String b = "";
+        if (a < 10) {
+            b = "0" + a;
+        } else {
+            b = a + "";
+        }
+        System.out.println(b);
+        String ciudadesR[] = cr.SelectCiudadR(b);
+        for (int i = 0; i < ciudadesR.length; i++) {
+            cbnCiudadDR.addItem(ciudadesR[i]);
+        }
+    }//GEN-LAST:event_cbProvinciasDRMouseClicked
+
+    private void cbnCantonDNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnCantonDNMouseClicked
+        String nombre = cbnCantonDN.getSelectedItem().toString();
+        String id = cr.SelectIDNombreCanton(nombre);
+        txt_lugarNacimiento.setText(id);
+    }//GEN-LAST:event_cbnCantonDNMouseClicked
+
+    private void cbnCiudadDNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnCiudadDNMouseClicked
+        cbnCantonDN.removeAllItems();
+        String ciudad = cbnCiudadDN.getSelectedItem().toString();
+        System.out.println(ciudad);
+        String ciudadN = cr.SelectIDNombreCiudad(ciudad);
+        System.out.println(ciudadN);
+        String cantonesN[] = cr.SelectCantonR(ciudadN);
+        for (int i = 0; i < cantonesN.length; i++) {
+            cbnCantonDN.addItem(cantonesN[i]);
+        }
+    }//GEN-LAST:event_cbnCiudadDNMouseClicked
+
+    private void cbProvinciasDNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbProvinciasDNMouseClicked
+        cbnCiudadDN.removeAllItems();
+        int a = cbProvinciasDN.getSelectedIndex() + 1;
+        String b = "";
+        if (a < 10) {
+            b = "0" + a;
+        } else if (a >= 10) {
+
+            b = a + "";
+        }
+        System.out.println(b);
+        String ciudadesN[] = cr.SelectCiudadN(b);
+        for (int i = 0; i < ciudadesN.length; i++) {
+            cbnCiudadDN.addItem(ciudadesN[i]);
+        }
+    }//GEN-LAST:event_cbProvinciasDNMouseClicked
 
     private void tbl_empleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_empleadosMouseClicked
         int filas = tbl_empleados.getRowCount();
@@ -2222,7 +2270,7 @@ public class Proyecto extends javax.swing.JFrame {
         String ciudadN = txt_lugarNacimiento.getText().substring(0, 4);
         String cantonN = txt_lugarNacimiento.getText().substring(0, 6);
 
-//        JOptionPane.showMessageDialog(null, provN);
+        //        JOptionPane.showMessageDialog(null, provN);
         cbProvinciasDN.setSelectedIndex(Integer.parseInt(provN) - 1);
         String ciudadesN[] = cr.SelectCiudadN(provN);
         for (int i = 0; i < ciudadesN.length; i++) {
@@ -2257,120 +2305,6 @@ public class Proyecto extends javax.swing.JFrame {
         String cantonRU = cr.SelectCantonRU(cantonR);
         cbnCantonDR.setSelectedItem(cantonRU);
     }//GEN-LAST:event_tbl_empleadosMouseClicked
-
-    private void cbProvinciasDNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbProvinciasDNMouseClicked
-        cbnCiudadDN.removeAllItems();
-        int a = cbProvinciasDN.getSelectedIndex() + 1;
-        String b = "";
-        if (a < 10) {
-            b = "0" + a;
-        } else if (a >= 10) {
-
-            b = a + "";
-        }
-        System.out.println(b);
-        String ciudadesN[] = cr.SelectCiudadN(b);
-        for (int i = 0; i < ciudadesN.length; i++) {
-            cbnCiudadDN.addItem(ciudadesN[i]);
-        }
-    }//GEN-LAST:event_cbProvinciasDNMouseClicked
-
-    private void cbnCiudadDNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnCiudadDNMouseClicked
-        cbnCantonDN.removeAllItems();
-        String ciudad = cbnCiudadDN.getSelectedItem().toString();
-        System.out.println(ciudad);
-        String ciudadN = cr.SelectIDNombreCiudad(ciudad);
-        System.out.println(ciudadN);
-        String cantonesN[] = cr.SelectCantonR(ciudadN);
-        for (int i = 0; i < cantonesN.length; i++) {
-            cbnCantonDN.addItem(cantonesN[i]);
-        }
-    }//GEN-LAST:event_cbnCiudadDNMouseClicked
-
-    private void cbnCantonDNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnCantonDNMouseClicked
-        String nombre = cbnCantonDN.getSelectedItem().toString();
-        String id = cr.SelectIDNombreCanton(nombre);
-        txt_lugarNacimiento.setText(id);
-    }//GEN-LAST:event_cbnCantonDNMouseClicked
-
-    private void cbProvinciasDRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbProvinciasDRMouseClicked
-        cbnCiudadDR.removeAllItems();
-
-        int a = cbProvinciasDR.getSelectedIndex() + 1;
-        String b = "";
-        if (a < 10) {
-            b = "0" + a;
-        } else {
-            b = a + "";
-        }
-        System.out.println(b);
-        String ciudadesR[] = cr.SelectCiudadR(b);
-        for (int i = 0; i < ciudadesR.length; i++) {
-            cbnCiudadDR.addItem(ciudadesR[i]);
-        }
-    }//GEN-LAST:event_cbProvinciasDRMouseClicked
-
-    private void cbnCiudadDRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnCiudadDRMouseClicked
-
-        cbnCantonDR.removeAllItems();
-        String ciudad = cbnCiudadDR.getSelectedItem().toString();
-        String ciudadR = cr.SelectIDNombreCiudad(ciudad);
-        String cantonesR[] = cr.SelectCantonR(ciudadR);
-        for (int i = 0; i < cantonesR.length; i++) {
-            cbnCantonDR.addItem(cantonesR[i]);
-        }
-    }//GEN-LAST:event_cbnCiudadDRMouseClicked
-
-    private void cbnCantonDRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnCantonDRMouseClicked
-        String nombre = cbnCantonDR.getSelectedItem().toString();
-        String id = cr.SelectIDNombreCanton(nombre);
-        txt_Residencia.setText(id);        // TODO add your handling code here:
-    }//GEN-LAST:event_cbnCantonDRMouseClicked
-
-    private void tbl_contratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_contratosMouseClicked
-
-    }//GEN-LAST:event_tbl_contratosMouseClicked
-
-    private void cbn_IDSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbn_IDSMouseClicked
-
-    }//GEN-LAST:event_cbn_IDSMouseClicked
-
-    private void txt_filtro_nominaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filtro_nominaKeyReleased
-        txt_filtro_nomina.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-                trs.setRowFilter(RowFilter.regexFilter("(?i)" + txt_filtro_nomina.getText(), 0, 1, 2));
-            }
-        });
-
-        trs = new TableRowSorter(modeloNomina);
-        tbl_nominas.setRowSorter(trs);
-    }//GEN-LAST:event_txt_filtro_nominaKeyReleased
-
-    private void txt_filtro_nominaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filtro_nominaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_filtro_nominaKeyTyped
-
-    private void tbl_nominasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_nominasMouseClicked
-        int filas = tbl_nominas.getRowCount();
-        int columnas = tbl_nominas.getColumnCount();
-
-        String vector[] = new String[columnas];
-        int pos = tbl_nominas.getSelectedRow();
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                if (i == pos) {
-                    vector[j] = tbl_nominas.getValueAt(i, j).toString();
-                }
-            }
-        }
-
-        cbn_IDS.setSelectedItem(vector[0]);
-        cbn_IDP.setSelectedItem(vector[1]);
-
-
-    }//GEN-LAST:event_tbl_nominasMouseClicked
 
     /*get Data para txt*/
     private void getDataTabla(int tabla, int filas, int columnas, JTable tbl,
@@ -2547,14 +2481,11 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -2564,7 +2495,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel18;
@@ -2573,7 +2503,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -2585,7 +2514,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
@@ -2596,8 +2524,6 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JMenu jm_tablas;
     private javax.swing.JTabbedPane panelPestañas;
@@ -2618,12 +2544,9 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JTextField txt_filtro_nomina;
     private javax.swing.JTextField txt_filtro_sueldo;
     private javax.swing.JTextField txt_id2;
-    private javax.swing.JTextField txt_id_cargos;
     private javax.swing.JTextField txt_id_sueldos;
     private javax.swing.JTextField txt_lugarNacimiento;
     private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_nombre_cargos;
-    private javax.swing.JTextField txt_se;
     private javax.swing.JTextField txt_telefono;
     private javax.swing.JTextField txt_tipoSangre;
     // End of variables declaration//GEN-END:variables
