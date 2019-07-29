@@ -5,7 +5,9 @@
  */
 package BDD;
 
+import cruds.Render;
 import cruds.crudTablas;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.TextField;
 import java.awt.event.KeyAdapter;
@@ -48,6 +50,7 @@ public class Proyecto extends javax.swing.JFrame {
 
     DefaultTableModel modeloDatos;
     DefaultTableModel modeloCargos;
+    DefaultTableModel modeloCargos1;
     DefaultTableModel modeloSueldos;
     DefaultTableModel modeloContratos;
     DefaultTableModel modeloFunciones;
@@ -66,6 +69,8 @@ public class Proyecto extends javax.swing.JFrame {
     TableCellEditor tce;
     private int FilContrato;
     DefaultTableModel modeloNomina;
+    int filas = 0;
+    int id = 0;
 
     public Proyecto(String user, String pass, String port, String host, String ip) throws SQLException {
         initComponents();
@@ -89,7 +94,7 @@ public class Proyecto extends javax.swing.JFrame {
         btn_del.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_edit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
+        filas = cr.getFilas("FUNCIONES") + 1;
         FilContrato = 0;
 
         getProvincias();
@@ -239,24 +244,67 @@ public class Proyecto extends javax.swing.JFrame {
     }
 
     private void btn_add_emp() {
-        String cedula = txt_cedula.getText();
-        String nombre = txt_nombre.getText();
-        String apellidoP = txt_apellidoP.getText();
-        String apellidoM = txt_apellidoM.getText();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaA = calendarios.getDate();
-        String fechaNac = formato.format(fechaA);
-        String Telefono = txt_telefono.getText();
-        String Email = txt_email.getText();
-        String Genero = ch_genero.getSelectedItem().toString();
-        String EC = ch_estadoCivil.getSelectedItem().toString();
-        String residencia = txt_Residencia.getText();
-        String direccion = txt_direccion.getText();
-        String lugarN = txt_lugarNacimiento.getText();
-        String tipoSangre = txt_tipoSangre.getText();
+        try {
+            String cedula = txt_cedula.getText();
+            String nombre = txt_nombre.getText();
+            String apellidoP = txt_apellidoP.getText();
+            String apellidoM = txt_apellidoM.getText();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date fechaA = calendarios.getDate();
+            String fechaNac = formato.format(fechaA);
+            String Telefono = txt_telefono.getText();
+            String Email = txt_email.getText();
+            String Genero = ch_genero.getSelectedItem().toString();
+            String EC = ch_estadoCivil.getSelectedItem().toString();
+            String residencia = txt_Residencia.getText();
+            String direccion = txt_direccion.getText();
+            String lugarN = txt_lugarNacimiento.getText();
+            String tipoSangre = txt_tipoSangre.getText();
+            int id = cr.getFilas("CAT_EMPLEADOS") + 1;
+            System.out.println(id);
+            cr.InsertEmpleados(id, cedula, nombre, apellidoP, apellidoM, fechaNac, residencia, direccion, Telefono, Email, Genero, lugarN, EC, tipoSangre);
+            JOptionPane.showMessageDialog(null, "Guardado");
+            empleados();
+        } catch (SQLException ex) {
+            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-        cr.InsertEmpleados(cedula, nombre, apellidoP, apellidoM, fechaNac, residencia, direccion, Telefono, Email, Genero, lugarN, EC, tipoSangre);
-        empleados();
+    public void vaciar_camposEmpleado() {
+        try {
+            txt_cedula.setText("");
+            txt_nombre.setText("");
+            txt_apellidoP.setText("");
+            txt_apellidoM.setText("");
+            txt_telefono.setText("");
+            txt_email.setText("");
+//        String Genero = ch_genero.getSelectedItem().toString();
+//        String EC = ch_estadoCivil.getSelectedItem().toString();
+            txt_Residencia.setText("");
+            txt_direccion.setText("");
+            txt_lugarNacimiento.setText("");
+            txt_tipoSangre.setText("");
+            int id = cr.getFilas("CAT_EMPLEADOS") + 1;
+            txt_id2.setText(String.valueOf(id));
+        } catch (SQLException ex) {
+            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void cargos_add() {
+        try {
+
+            String vector[] = new String[2];
+            for (int i = 0; i < tbl_cargos1.getColumnCount(); i++) {
+                vector[i] = tbl_cargos1.getValueAt(tbl_cargos1.getRowCount() - 1, i).toString();
+            }
+            System.out.println(vector[0] + vector[1]);
+            cr.InsertCargos(vector[0], vector[1]);
+            cargos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error!\t" + e.getMessage(),
+                    "Error!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -276,6 +324,7 @@ public class Proyecto extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         btn_division = new javax.swing.JButton();
         btn_exit2 = new javax.swing.JButton();
+        btn_nuevo = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         panelPestañas = new javax.swing.JTabbedPane();
         Scroll_empleados = new javax.swing.JScrollPane();
@@ -336,6 +385,8 @@ public class Proyecto extends javax.swing.JFrame {
         tbl_cargos = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbl_funciones = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tbl_cargos1 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -384,7 +435,7 @@ public class Proyecto extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        btn_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/iconos/mas.png"))); // NOI18N
+        btn_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/iconos/guardar.png"))); // NOI18N
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addActionPerformed(evt);
@@ -438,23 +489,32 @@ public class Proyecto extends javax.swing.JFrame {
             }
         });
 
+        btn_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/iconos/mas.png"))); // NOI18N
+        btn_nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nuevoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_del, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_connect, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_exit2)
                 .addGap(18, 18, 18)
@@ -475,7 +535,8 @@ public class Proyecto extends javax.swing.JFrame {
                             .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btn_exit2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btn_division, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btn_division, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -523,9 +584,16 @@ public class Proyecto extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
         jLabel1.setText("ID Persona");
+        jLabel1.setEnabled(false);
 
         txt_id2.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
         txt_id2.setForeground(new java.awt.Color(102, 102, 102));
+        txt_id2.setEnabled(false);
+        txt_id2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_id2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 0, 11)); // NOI18N
         jLabel5.setText("Cedula");
@@ -931,17 +999,9 @@ public class Proyecto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         tbl_cargos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_cargosMouseClicked(evt);
@@ -978,19 +1038,54 @@ public class Proyecto extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
-                .addGap(0, 568, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(0, 409, Short.MAX_VALUE))
         );
 
-        panelPestañas.addTab("Cargos", jPanel9);
+        panelPestañas.addTab("Cargos/Funciones", jPanel9);
+
+        jScrollPane7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane7MouseClicked(evt);
+            }
+        });
+        jScrollPane7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jScrollPane7KeyReleased(evt);
+            }
+        });
+
+        tbl_cargos1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        tbl_cargos1.setForeground(new java.awt.Color(102, 102, 102));
+        tbl_cargos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbl_cargos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_cargos1MouseClicked(evt);
+            }
+        });
+        tbl_cargos1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbl_cargos1KeyReleased(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tbl_cargos1);
+
+        panelPestañas.addTab("Cargos", jScrollPane7);
 
         jPanel6.setMaximumSize(new java.awt.Dimension(900, 32767));
 
@@ -1105,7 +1200,7 @@ public class Proyecto extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_filtro_nomina)
-                            .addComponent(cbn_IDP, 0, 274, Short.MAX_VALUE)
+                            .addComponent(cbn_IDP, 0, 265, Short.MAX_VALUE)
                             .addComponent(cbn_IDS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jSeparator17))
                 .addContainerGap())
@@ -1435,12 +1530,11 @@ public class Proyecto extends javax.swing.JFrame {
                     btn_add_emp();
                     break;
                 case 1:
+
                     funciones_add();
                     break;
                 case 2:
-//                    String id = txt_id_cargos.getText().trim();
-//                    String nombre = txt_nombre_cargos.getText().trim();
-//                    btn_add("cat_cargos", 2, "idcargo", "IDC_", id, nombre, 1.0);
+                    cargos_add();
                     break;
                 case 3:
                     contratos_add();
@@ -1460,34 +1554,13 @@ public class Proyecto extends javax.swing.JFrame {
 
     private void funciones_add() {
         try {
-            Object[] test = new Object[1];
-            test[0] = null;
 
-            modeloFunciones.addRow(test);
-            tbl_funciones.setModel(modeloFunciones);
-//            
-            String id = (String) tbl_funciones.getValueAt(tbl_funciones.getRowCount() - 2, 0);
+            String vector[] = new String[3];
+            for (int i = 0; i < tbl_funciones.getColumnCount(); i++) {
+                vector[i] = tbl_funciones.getValueAt(tbl_funciones.getRowCount() - 1, i).toString();
+            }
 
-            String Idrecort = id.substring(id.indexOf("_") + 1);
-            int idInsert = Integer.parseInt(Idrecort) + 1;
-            DecimalFormat format = new DecimalFormat("000");
-            String idI = "IDF_" + format.format(idInsert);
-
-            tbl_funciones.setValueAt(idI, tbl_funciones.getRowCount() - 1, 0);
-
-
-            /*informacion defecto de sueldo*/
-            String data[][] = dt.getData("cat_cargos", 2, "idcargo");
-            tbl_funciones.setValueAt(data[0][0], tbl_funciones.getRowCount() - 1, 1);
-
-            tbl_funciones.setValueAt("Sin registro", tbl_funciones.getRowCount() - 1, 2);
-
-            /*carga de la informacion en la base de datos*/
-            JOptionPane.showMessageDialog(null, "Se ha cargado una nueva funcion"
-                    + "\ncon informacion por defecto,\nPor favor editalas",
-                    "Alert!", JOptionPane.INFORMATION_MESSAGE);
-
-            cr.InsertFuciones(idI, data[0][0], "Sin registro");
+            cr.InsertFuciones(vector[0], vector[1], vector[2]);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error!\t" + e.getMessage(),
@@ -1511,8 +1584,10 @@ public class Proyecto extends javax.swing.JFrame {
                     funciones_delete();
                     break;
                 case 2:
-//                    String id = txt_id_cargos.getText().trim();
-//                    btn_delete("cat_cargos", id, "idcargo");
+                    int fila = tbl_cargos1.getSelectedRow();
+                    String id = tbl_cargos1.getValueAt(fila, 0).toString();
+
+                    btn_delete("cat_cargos", id, "idcargo");
                     break;
                 case 3:
                     int op = JOptionPane.showConfirmDialog(null, "estas seguro de eliminar el item?",
@@ -1565,9 +1640,10 @@ public class Proyecto extends javax.swing.JFrame {
                     funciones_edit();
                     break;
                 case 2:
-//                    String id = txt_id_cargos.getText().trim();
-//                    String nombre = txt_nombre_cargos.getText().trim();
-//                    btn_edit("cat_cargos", id, nombre, "idcargo", 1.0);
+                    int fila = tbl_cargos1.getSelectedRow();
+                    String id = tbl_cargos1.getValueAt(fila, 0).toString();
+                    String nombre = tbl_cargos1.getValueAt(fila, 1).toString();
+                    btn_edit("cat_cargos", id, nombre, "idcargo", 1.0);
                     break;
 
                 case 3:
@@ -1713,7 +1789,17 @@ public class Proyecto extends javax.swing.JFrame {
 
     private void cargos() {
         try {
+            modeloCargos1 = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    if (columna == 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
 
+                }
+            };
             modeloCargos = new DefaultTableModel() {
                 @Override
                 public boolean isCellEditable(int fila, int columna) {
@@ -1733,6 +1819,7 @@ public class Proyecto extends javax.swing.JFrame {
 
             for (int i = 0; i < lista.size(); i++) {
                 modeloCargos.addColumn(lista.get(i));
+                modeloCargos1.addColumn(lista.get(i));
             }
 //
             Object[] test = new Object[1];
@@ -1741,15 +1828,18 @@ public class Proyecto extends javax.swing.JFrame {
 
             for (int i = 0; i < fila; i++) {
                 modeloCargos.addRow(test);
+                modeloCargos1.addRow(test);
             }
 
             for (int i = 0; i < data.length; i++) {
                 for (int j = 0; j < data[i].length; j++) {
                     modeloCargos.setValueAt(data[i][j], i, j);
+                    modeloCargos1.setValueAt(data[i][j], i, j);
                 }
             }
 
             tbl_cargos.setModel(modeloCargos);
+            tbl_cargos1.setModel(modeloCargos1);
 
         } catch (SQLException ex) {
 
@@ -1951,15 +2041,12 @@ public class Proyecto extends javax.swing.JFrame {
 
     private void funciones_edit() {
 
-        int fila = tbl_funciones.getSelectedRow();
+        String vector[] = new String[3];
+        for (int i = 0; i < tbl_funciones.getColumnCount(); i++) {
+            vector[i] = tbl_funciones.getValueAt(tbl_funciones.getRowCount() - 1, i).toString();
+        }
 
-        String Id_funcion = String.valueOf(tbl_funciones.getValueAt(fila, 0));
-
-        String Id_contrato = (String) tbl_funciones.getValueAt(fila, 1);
-
-        String Nombre = (String) tbl_funciones.getValueAt(fila, 2);
-
-        cr.editFunciones(Id_funcion, Id_contrato, Nombre);
+        cr.editFunciones(vector[0], vector[1], vector[2]);
 
     }
 //    
@@ -2115,23 +2202,75 @@ public class Proyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_jScrollPane6MouseClicked
 
     private void tbl_cargosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbl_cargosKeyReleased
-        int filas = tbl_cargos.getRowCount();
-        int columnas = tbl_cargos.getColumnCount();
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
+        try {
+            int fila = tbl_cargos.getSelectedRow();
+//            int columnas = tbl_cargos.getSelectedColumn();
+            String campo = tbl_cargos.getValueAt(fila, 0).toString();
 
+            String matriz[][] = cr.getData("FUNCIONES", 3, campo);
+            int fil = cr.getFilasCondicion("FUNCIONES", campo);
+            String nombre[] = new String[3];
+            nombre[0] = "IDFUNCION";
+            nombre[1] = "IDCARGO";
+            nombre[2] = "NOMBRE";
+
+            modeloFunciones = new DefaultTableModel(nombre, fil) {
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    if (columna == 0 || columna == 1) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+
+                }
+            };
+            for (int i = 0; i < fil; i++) {
+                for (int j = 0; j < 3; j++) {
+                    modeloFunciones.setValueAt(matriz[i][j], i, j);
+                }
             }
-        }
+            tbl_funciones.setModel(modeloFunciones);
 
-//        int filas = tbl_cargos.getRowCount();
-        //        int columnas = tbl_cargos.getColumnCount();
-        //        getDataTabla(2, filas, columnas, tbl_cargos, txt_id_cargos, txt_nombre_cargos, sp_salario_sueldos);
+        } catch (SQLException ex) {
+            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tbl_cargosKeyReleased
 
     private void tbl_cargosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_cargosMouseClicked
-        //        int filas = tbl_cargos.getRowCount();
-        //        int columnas = tbl_cargos.getColumnCount();
-        //        getDataTabla(2, filas, columnas, tbl_cargos, txt_id_cargos, txt_nombre_cargos, sp_salario_sueldos);
+        try {
+            int fila = tbl_cargos.getSelectedRow();
+//            int columnas = tbl_cargos.getSelectedColumn();
+            String campo = tbl_cargos.getValueAt(fila, 0).toString();
+
+            String matriz[][] = cr.getData("FUNCIONES", 3, campo);
+            int fil = cr.getFilasCondicion("FUNCIONES", campo);
+            String nombre[] = new String[3];
+            nombre[0] = "IDFUNCION";
+            nombre[1] = "IDCARGO";
+            nombre[2] = "NOMBRE";
+
+            modeloFunciones = new DefaultTableModel(nombre, fil) {
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    if (columna == 0 || columna == 1) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+
+                }
+            };
+            for (int i = 0; i < fil; i++) {
+                for (int j = 0; j < 3; j++) {
+                    modeloFunciones.setValueAt(matriz[i][j], i, j);
+                }
+            }
+            tbl_funciones.setModel(modeloFunciones);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Proyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tbl_cargosMouseClicked
 
     private void cbnCantonDRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbnCantonDRMouseClicked
@@ -2306,6 +2445,90 @@ public class Proyecto extends javax.swing.JFrame {
         cbnCantonDR.setSelectedItem(cantonRU);
     }//GEN-LAST:event_tbl_empleadosMouseClicked
 
+    private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
+
+        try {
+
+            pestañas = panelPestañas.getSelectedIndex();
+            switch (pestañas) {
+                case 0:
+                    vaciar_camposEmpleado();
+                    break;
+                case 1:
+
+                    int fila = tbl_cargos.getSelectedRow();
+                    String campo = tbl_cargos.getValueAt(fila, 0).toString();
+                    if (filas < 10) {
+                        modeloFunciones.addRow(new Object[]{"IDF_00" + (filas), campo, ""});
+                    } else {
+                        modeloFunciones.addRow(new Object[]{"IDF_0" + (filas), campo, ""});
+                    }
+
+                    tbl_funciones.setModel(modeloFunciones);
+
+                    Render miRender = new Render();
+                    miRender.setPosFilpibot(tbl_funciones.getRowCount() - 1);
+                    tbl_funciones.setDefaultRenderer(Object.class, miRender);
+                    filas++;
+                    break;
+
+                case 2:
+                    id = cr.getFilas("CAT_CARGOS") + 2;
+
+                    if (id < 10) {
+                        modeloCargos1.addRow(new Object[]{"IDC_00" + id});
+                    } else {
+                        modeloCargos1.addRow(new Object[]{"IDC_0" + id});
+                    }
+                    tbl_cargos1.setModel(modeloCargos1);
+                    Render miRender1 = new Render();
+                    miRender1.setPosFilpibot(tbl_cargos1.getRowCount() - 1);
+                    tbl_cargos1.setDefaultRenderer(Object.class, miRender1);
+
+                    break;
+
+                case 4:
+                    int id1 = cr.getFilas("VALORES_CONTRATO") + 1;
+                    System.out.println(id1);
+                    if (id1 < 10) {
+                        modeloNomina.addRow(new Object[]{"IDS_00" + id1});
+                    } else {
+                        modeloNomina.addRow(new Object[]{"IDC_0" + id1});
+                    }
+                    tbl_nominas.setModel(modeloNomina);
+                    Render miRender2 = new Render();
+                    miRender2.setPosFilpibot(tbl_nominas.getRowCount() - 1);
+                    tbl_nominas.setDefaultRenderer(Object.class, miRender2);
+                    break;
+
+            }
+        } catch (Exception ex) {
+
+        }
+
+
+    }//GEN-LAST:event_btn_nuevoActionPerformed
+
+    private void tbl_cargos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_cargos1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_cargos1MouseClicked
+
+    private void tbl_cargos1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbl_cargos1KeyReleased
+
+    }//GEN-LAST:event_tbl_cargos1KeyReleased
+
+    private void jScrollPane7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane7MouseClicked
+
+    private void jScrollPane7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jScrollPane7KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane7KeyReleased
+
+    private void txt_id2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_id2ActionPerformed
+
     /*get Data para txt*/
     private void getDataTabla(int tabla, int filas, int columnas, JTable tbl,
             JTextField txt_x, JTextField txt_y, JSpinner sp_z) {
@@ -2447,6 +2670,7 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_exit;
     private javax.swing.JButton btn_exit2;
+    private javax.swing.JButton btn_nuevo;
     private com.toedter.calendar.JDateChooser calendarios;
     private javax.swing.JComboBox<String> cbProvinciasDN;
     private javax.swing.JComboBox<String> cbProvinciasDR;
@@ -2512,6 +2736,7 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator12;
@@ -2529,6 +2754,7 @@ public class Proyecto extends javax.swing.JFrame {
     private javax.swing.JTabbedPane panelPestañas;
     private javax.swing.JSpinner sp_salario_sueldos;
     private javax.swing.JTable tbl_cargos;
+    private javax.swing.JTable tbl_cargos1;
     private javax.swing.JTable tbl_contratos;
     private javax.swing.JTable tbl_empleados;
     private javax.swing.JTable tbl_funciones;
